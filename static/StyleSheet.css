@@ -1,0 +1,231 @@
+body            { font-family: sans-serif; background: rgba(255, 255, 255, 0.45);}
+
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #38003c;
+
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    -moz-text-size-adjust:auto ;
+    color: white;
+    text-align: center;
+    padding: 35px;
+    text-decoration: none;
+    margin-left: auto;
+
+
+}
+
+li a:hover {
+    background-color: #111111;
+}
+
+table{
+    padding-top: 2%;
+    padding-left: 1%;
+    float: left;
+    border: #38003c;
+}
+
+table tr:nth-child(even) {
+    background-color: #ffffff;
+}
+table tr:nth-child(odd) {
+   background-color: #f4f4f4;
+}
+table th {
+    background-color: #38003c;
+    font-size: small;
+    color: white;
+}
+
+.form-signin {
+  max-width: 0%;
+  padding: 0%;
+  margin: 0 auto;
+}
+
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+form .W{
+    text-align: center;
+    margin-top: 1%;
+    padding-left: 6%;
+    margin-left: 4%;
+}
+
+
+
+.Match{
+      position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.img{
+    float: top;
+    padding: 10px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+form{
+    float: right;
+    margin-top: 10px;
+    margin-right: 5px;
+}
+.btn{
+    float: right;
+    margin-top: 6px;
+    width: 90px;
+
+}
+footer{
+   left: 0;
+   bottom: -2%;
+   width: 100%;
+   background-color: #e90052;
+   color: white;
+   text-align: center;
+    float: bottom;
+}
+
+.foot{
+
+  list-style-type: none;
+    overflow: hidden;
+    background-color: #38003c;
+    margin-bottom: 10px;
+    padding-bottom: 25px;
+
+}
+p{
+    float: bottom;
+}
+th, td {
+    padding: 15px;
+    text-align: left;
+}
+#Team1{
+    width: 36%;
+    padding: 25%;
+    margin-left: 20%;
+
+}
+#HomeResultTable{
+    margin: auto;
+    width: 2%;
+    size: 3px;
+    font-size: small;
+    border: 2px;
+}
+#LHomeResultTable{
+    margin: auto;
+    width: 2%;
+    size: 3px;
+    font-size: small;
+    border: 2px;
+    overflow: auto;
+    position: relative;
+    align-content: space-between;
+     box-shadow: 4px 5px 6px  rgba(56, 0, 60, 0.09);
+}
+.HomeResult{
+    border: 2px;
+}
+
+#RHomeResultTable {
+    margin-right: 30px;
+    float: right;
+    width: 2%;
+    size: 3px;
+    font-size: small;
+    border: 2px;
+    overflow: auto;
+    position: relative;
+    box-shadow: 4px 5px 6px  rgba(56, 0, 60, 0.09);
+}
+
+#PLvideo{
+    padding-top:  6% ;
+    align-content: space-between;
+    padding-left: 35%;
+    position:absolute;
+}
+#logo{
+    float: left;
+}
+
+
+/* Create four equal columns that floats next to each other */
+.card {
+    float: left;
+    width: 24%;
+    padding: 20px;
+    border: 2px;
+    border-color: #111111;
+    box-shadow: 4px 5px 6px  rgba(56, 0, 60, 0.09);
+    overflow: auto;
+    margin: 3%;
+}
+.row{
+    padding-top: 30%;
+    overflow-y: auto;
+    padding-bottom: 5%;
+    box-shadow: 4px 5px 6px  rgba(56, 0, 60, 0.09);
+}
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+    border: 2px;
+    border-color: #111111;
+    box-shadow: 4px 5px 6px  rgba(56, 0, 60, 0.09);
+    padding-left: 20%;
+    overflow: auto;
+}
+
+h2{
+    text-shadow: 4px 2px 6px #e90052;
+    position:relative;
+    margin-top: 10%;
+}
+#bk{
+    padding-left: 17.7%;
+    width: 63%;
+    position:absolute;
+}

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type="text/javascript" src="static/js/signUp.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='StyleSheet.css') }}">
+     {% block head %}
+    <meta charset="UTF-8">
+    <title>Leauge+</title>
+    {% endblock %}
+</head>
+<body >
+<a href="/Arsenal">
+  <img class="img" src=" static/TeamsPic/arsenal_football_club_logo_by_lemongraphic-d3gg6no.png "  style="width:60px;height:60px;border:0;">
+</a>
+<a href="/Manchester_City">
+  <img class="img" src=" static/TeamsPic/1024px-Manchester_City_FC_badge.svg.png "  style="width:60px;height:60px;border:0;">
+</a>
+<a href="/Manchester_United">
+  <img class="img" src=" static/TeamsPic/Man United.png "  style="width:60px;height:60px;border:0;">
+</a>
+<a href="/Liverpool">
+  <img  class="img" src=" static/TeamsPic/liverpool.png"  style="width:60px;height:60px;border:0;">
+</a>
+<a href="/Chelsea">
+  <img  class="img" src=" static/TeamsPic/Chelsea_FC.svg.png "  style="width:60px;height:60px;border:0;">
+</a>
+<a href="/Southampton">
+  <img class="img"  src=" static/TeamsPic/180px-FC_Southampton.svg.png "  style="width:60px;height:60px;border:0;">
+</a>
+<a href="/Leicester_City">
+  <img  class="img" src=" static/TeamsPic/220px-Leicester_City_crest.svg.png "  style="width:60px;height:60px;border:0;">
+</a>
+<a href="/Everton">
+  <img class="img"  src=" static/TeamsPic/220px-Everton_FC_logo.svg.png "  style="width:60px;height:60px;border:0;">
+</a>
+<a href="/Swansea_City">
+  <img class="img"  src=" static/TeamsPic/Swansea_City_AFC_logo.svg.png"  style="width:60px;height:60px;border:0;">
+</a>
+<a href="/Speiers">
+  <img class="img"  src=" static/TeamsPic/sp.png "  style="width:60px;height:60px;border:0;">
+</a>
+<a href="/Newcastle_United">
+  <img class="img"  src=" static/TeamsPic/Newcastle_United_Logo.svg.png "  style="width:60px;height:60px;border:0;">
+</a>
+<a href="/Sunderland">
+  <img class="img"  src=" static/TeamsPic/220px-Logo_Sunderland.svg.png "  style="width:60px;height:60px;border:0;">
+</a>
+<a href="/Stoke_City">
+  <img  class="img" src=" static/TeamsPic/220px-Stoke_City_FC.svg.png "  style="width:60px;height:60px;border:0;">
+</a>
+<a href="/Burnley">
+  <img  class="img" src=" static/TeamsPic/200px-Burnley_FC_badge.png "  style="width:60px;height:60px;border:0;">
+</a>
+<a href="/West_Ham_United">
+  <img  class="img" src=" static/TeamsPic/185px-West_Ham_United_FC_logo.svg.png "  style="width:60px;height:60px;border:0;">
+</a>
+<a href="/Middlesbrough">
+  <img  class="img" src=" static/TeamsPic/Middlesbrough_FC_crest.svg.png "  style="width:60px;height:60px;border:0;">
+</a>
+<a href="/Huddersfield">
+  <img class="img"  src=" static/TeamsPic/Huddersfield_Town_A.F.C._logo.svg.png"  style="width:54px;height:66px;border:0;">
+</a>
+<a href="/Hull_City">
+  <img class="img" src=" static/TeamsPic/15002368957_55515c3728_o.png "  style="width:60px;height:60px;border:0;">
+</a>
+<a href="/Bournemouth">
+  <img  class="img" src=" static/TeamsPic/AFC_Bournemouth_(2013).svg.png "  style="width:55px;height:60px;border:0;">
+</a>
+<a href="/West_Bromwich_Albion">
+  <img  class="img" src=" static/TeamsPic/160px-West_Bromwich_Albion.svg.png "  style="width:60px;height:60px;border:0;">
+</a>
+<a href="/Watford">
+  <img class="img"  src=" static/TeamsPic/185px-Watford.svg.png "  style="width:60px;height:60px;border:0;">
+</a>
+<div>
+
+<ul>
+<a href="/">
+<img id="logo"  src=" static/TeamsPic/LogoSample_ByTailorBrands52.jpg">
+</a>
+<form class="navbar-form navbar-left" action="{{ url_for('hello') }}" method="POST" role="search">
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Search" name="search" value="{{ request.form.search }}">
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
+    {% for item in nav.top %}
+    <li class="{{ 'active' if item.is_active else '' }}">
+        {{ item }}
+        {% if item.items %}
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+
+</div>
+<table>
+{% for row in data %}
+  <tr>
+      {% for d in row %}
+                <td>{{ d }}</td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+</table>
+
+<div>
+<img id="bk"  src=" static/TeamsPic/DB_PL_Preview_01.jpg">
+<section id="PLvideo">
+    <iframe width="660" height="415" src="https://www.youtube.com/embed/jzhgnt9kGGg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</iframe>
+
+</section>
+
+<div   class="LHomeResult" style="-moz-overflow-y: 5;">
+<table id="LHomeResultTable">
+<th>Home Team</th><th>HS</th><th>Away Team</th><th>AS</th>
+ {% for row in MatchesResult %}
+        <tr>
+            {% for d in row %}
+                <td>{{ d }}</td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+</table>
+</div>
+</div>
+
+
+<div class="RHomeResult">
+<table id="RHomeResultTable">
+ <th>ID</th><th>Home Team</th><th>Time</th><th>Date</th><th>Away Team</th>
+ {% for row in Fixtures %}
+                {% set id = row[0]  %}
+                {% set home = row[1]| string%}
+                {% set time = row[2]| string %}
+                {% set date = row[3]| string %}
+                {% set away = row[4]| string %}
+        <tr class="trs" onclick="renderList({{ id }},{{ home | string}},{{ away | string}});">
+                <td id="{{ id }}" class="id"><a  onclick="findMatch({{ id }})"> {{ id }}</a></td>
+            <td id="{{ home }}" class="home"><a  onclick="findMatch({{ home }})" >{{ home }}</a></td>
+                <td>{{ time }}</td>
+                <td>{{ date }}</td>
+                <td id="{{ away }}" class="away">{{ away }}</td>
+        </tr>
+    {% endfor %}
+
+</table>
+</div>
+
+
+
+<div>
+    <div id="NewsList">
+						<div class="row">
+                        <h2>News:</h2>
+							<div class="col-sm-6 col-md-4 col-lg-3">
+								{% for a in articals %}
+                                    <div class="card"><a href="{{ a['url'] }}">
+
+									<img src="{{ a['urlToImage'] }}" height="150">
+                                     </a>
+
+									<p>Title : {{ a['title'] }}</p>
+
+
+                                    <p>Description : {{ a['description']}}</p>
+
+
+                                     <p>publishedAt : {{ a['publishedAt'] }}</p>
+
+                                   </div>
+                                {% endfor %}
+							</div>
+						</div>
+</div>
+</div>
+
+</body>
+<footer>
+<p id="demo"></p>
+
+<div class="foot">
+<p>Get social with us..
+<a href="https://twitter.com/AthloneIT?lang=en"><img src="t.gif" class="foo"></a>
+<a href="https://www.facebook.com/athloneit/"><img src="f.gif" class="foo"></a>
+<a href="https://www.linkedin.com/school/860289/"><img src="i.gif" class="foo"></a></p>
+</div>
+
+<script>
+document.getElementById("demo").innerHTML = Date();
+</script>
+</footer>
+</html>
+

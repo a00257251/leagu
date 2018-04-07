@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='StyleSheet.css') }}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+
+<a href="/Arsenal">
+  <img class="img" src=" static/TeamsPic/arsenal_football_club_logo_by_lemongraphic-d3gg6no.png "  style="width:60px;height:60px;border:0;">
+</a>
+<a href="/Manchester_City">
+  <img class="img" src=" static/TeamsPic/1024px-Manchester_City_FC_badge.svg.png "  style="width:60px;height:60px;border:0;">
+</a>
+<a href="/Manchester_United">
+  <img class="img" src=" static/TeamsPic/Man United.png "  style="width:60px;height:60px;border:0;">
+</a>
+<a href="/Liverpool">
+  <img  class="img" src=" static/TeamsPic/liverpool.png"  style="width:60px;height:60px;border:0;">
+</a>
+<a href="/Chelsea">
+  <img  class="img" src=" static/TeamsPic/Chelsea_FC.svg.png "  style="width:60px;height:60px;border:0;">
+</a>
+<a href="/Southampton">
+  <img class="img"  src=" static/TeamsPic/180px-FC_Southampton.svg.png "  style="width:60px;height:60px;border:0;">
+</a>
+<a href="/Leicester_City">
+  <img  class="img" src=" static/TeamsPic/220px-Leicester_City_crest.svg.png "  style="width:60px;height:60px;border:0;">
+</a>
+<a href="/Everton">
+  <img class="img"  src=" static/TeamsPic/220px-Everton_FC_logo.svg.png "  style="width:60px;height:60px;border:0;">
+</a>
+<a href="/Swansea_City">
+  <img class="img"  src=" static/TeamsPic/Swansea_City_AFC_logo.svg.png"  style="width:60px;height:60px;border:0;">
+</a>
+<a href="/Speiers">
+  <img class="img"  src=" static/TeamsPic/sp.png "  style="width:60px;height:60px;border:0;">
+</a>
+<a href="/Newcastle_United">
+  <img class="img"  src=" static/TeamsPic/Newcastle_United_Logo.svg.png "  style="width:60px;height:60px;border:0;">
+</a>
+<a href="/Sunderland">
+  <img class="img"  src=" static/TeamsPic/220px-Logo_Sunderland.svg.png "  style="width:60px;height:60px;border:0;">
+</a>
+<a href="/Stoke_City">
+  <img  class="img" src=" static/TeamsPic/220px-Stoke_City_FC.svg.png "  style="width:60px;height:60px;border:0;">
+</a>
+<a href="/Burnley">
+  <img  class="img" src=" static/TeamsPic/200px-Burnley_FC_badge.png "  style="width:60px;height:60px;border:0;">
+</a>
+<a href="/West_Ham_United">
+  <img  class="img" src=" static/TeamsPic/185px-West_Ham_United_FC_logo.svg.png "  style="width:60px;height:60px;border:0;">
+</a>
+<a href="/Middlesbrough">
+  <img  class="img" src=" static/TeamsPic/Middlesbrough_FC_crest.svg.png "  style="width:60px;height:60px;border:0;">
+</a>
+<a href="/Huddersfield">
+  <img class="img"  src=" static/TeamsPic/Huddersfield_Town_A.F.C._logo.svg.png"  style="width:54px;height:66px;border:0;">
+</a>
+<a href="/Hull_City">
+  <img class="img" src=" static/TeamsPic/15002368957_55515c3728_o.png "  style="width:60px;height:60px;border:0;">
+</a>
+<a href="/Bournemouth">
+  <img  class="img" src=" static/TeamsPic/AFC_Bournemouth_(2013).svg.png "  style="width:55px;height:60px;border:0;">
+</a>
+<a href="/West_Bromwich_Albion">
+  <img  class="img" src=" static/TeamsPic/160px-West_Bromwich_Albion.svg.png "  style="width:60px;height:60px;border:0;">
+</a>
+<a href="/Watford">
+  <img class="img"  src=" static/TeamsPic/185px-Watford.svg.png "  style="width:60px;height:60px;border:0;">
+</a>
+<ul>
+<a href="/">
+<img id="logo"  src=" static/TeamsPic/LogoSample_ByTailorBrands52.jpg">
+</a>
+<form class="navbar-form navbar-left" action="{{ url_for('hello') }}" method="POST" role="search">
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Search" name="search" value="{{ request.form.search }}">
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
+    {% for item in nav.top %}
+    <li class="{{ 'active' if item.is_active else '' }}">
+        {{ item }}
+        {% if item.items %}
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+
+
+<table>
+
+<th>N</th><th>Team</th><th>Played</th><th>W</th><th>D</th><th>L</th><th>F</th><th>A</th><th>GD</th><th>PTS</th>
+    {% for row in rv %}
+        <tr>
+            {% for d in row %}
+                <td>{{ d }}</td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+
+ {% for row in MatchesResult %}
+        <tr>
+            {% for d in row %}
+                <td>{{ d }}</td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
