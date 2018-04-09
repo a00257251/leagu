@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+    <script type="text/javascript" src="static/js/jquery.js"></script>
+    <script type="text/javascript" src="static/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="static/js/popper.min.js"></script>
+    <script type="text/javascript" src="static/js/bootstrapV4.js"></script>
+    <script type="text/javascript" src="static/js/team.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='StyleSheet.css') }}">
     <meta charset="UTF-8">
-    <title>Title</title>
-
+    <title>Premier Leauge Table</title>
 </head>
 <body>
-
 <a href="/Arsenal">
   <img class="img" src=" static/TeamsPic/arsenal_football_club_logo_by_lemongraphic-d3gg6no.png "  style="width:60px;height:60px;border:0;">
 </a>
@@ -75,13 +82,6 @@
 <a href="/">
 <img id="logo"  src=" static/TeamsPic/LogoSample_ByTailorBrands52.jpg">
 </a>
-<form class="navbar-form navbar-left" action="{{ url_for('hello') }}" method="POST" role="search">
-    <div class="form-group">
-      <input type="text" class="form-control" placeholder="Search" name="search" value="{{ request.form.search }}">
-    </div>
-    <button type="submit" class="btn btn-default">Submit</button>
-</form>
-
     {% for item in nav.top %}
     <li class="{{ 'active' if item.is_active else '' }}">
         {{ item }}
@@ -90,26 +90,45 @@
     </li>
     {% endfor %}
 </ul>
-
-
-<table>
-
-<th>N</th><th>Team</th><th>Played</th><th>W</th><th>D</th><th>L</th><th>F</th><th>A</th><th>GD</th><th>PTS</th>
-    {% for row in rv %}
+    <div >
+    <table id="PL_id" >
+        <thead>
         <tr>
-            {% for d in row %}
-                <td>{{ d }}</td>
-            {% endfor %}
+        <th>N</th><th>Team</th><th>Played</th><th>W</th><th>D</th><th>L</th><th>F</th><th>A</th><th>GD</th><th>PTS</th>
         </tr>
-    {% endfor %}
+        </thead>
+        <tbody id="PLTable"></tbody>
+    </table>
+    </div>
+<!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog" >
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <form class="form-inline" method="POST" action="{{ url_for('team')}}">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon">Home</span>
+                                <select id="Team" name="Team11_select" class="selectpicker form-control">
+                                </select>
+                            </div>
+                            <button id="bt" type="submit" class="btn btn-default">Predict</button>
+                            {{ msg }}
+                        </div>
+                    </form>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
- {% for row in MatchesResult %}
-        <tr>
-            {% for d in row %}
-                <td>{{ d }}</td>
-            {% endfor %}
-        </tr>
-    {% endfor %}
-</table>
+
+
+
+
+
+
+
 </body>
 </html>

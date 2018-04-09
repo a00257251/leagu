@@ -1,0 +1,77 @@
+body {margin: 0;}
+
+ul.nav{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+ul.nav li {float: left;}
+
+ul.nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+ul.nav li a:hover:not(.active) {background-color: #002b80;}
+
+ul.nav li a.active {background-color: #002b80;}
+
+ul.nav li.right {float: right;}
+
+
+body {
+font: "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", sans-serif;
+background-repeat: no-repeat;
+    background-attachment: fixed;
+background-position:center;
+background-size: cover;
+color: white;
+}
+
+
+#gifs {
+    margin-left: 0;
+    padding: 0;
+    margin-top: -26px;
+	height:px;
+}
+body font {color: white;}
+
+#ticketTable{
+	color: black;
+	background-color: #c8c8c8;
+	
+	
+}
+tr:nth-child {background-color: #c8c8c8;}
+#display:tr:nth-child {background-color: #c8c8c8;
+color: white;}
+
+.modal-content{
+	background-color: black;
+}
+.card{
+	border: background;
+}
+#btnAdd{
+	float: right;
+	margin-right: 3%;
+	margin-bottom: 1%;
+	
+}
+.card{
+	color: white;
+	background: inherit;
+}
+#ticketForm{
+	background-color: black;
+	margin-left: 20%;
+	margin-top: 20%;
+	float: right ;
+}

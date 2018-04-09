@@ -1,6 +1,7 @@
 body            { font-family: sans-serif; background: rgba(255, 255, 255, 0.45);}
 
 
+
 ul {
     list-style-type: none;
     margin: 0;
@@ -29,12 +30,30 @@ li a {
 li a:hover {
     background-color: #111111;
 }
-
+p {
+    padding-left: 1%;
+}
 table{
-    padding-top: 2%;
     padding-left: 1%;
     float: left;
     border: #38003c;
+}
+#PL_id{
+    margin-top: auto;
+}
+
+
+#PL_id th {
+    background-color: #38003c;
+    font-size: small;
+    color: white;
+}
+
+#PL_id tr:nth-child(even) {
+    background-color: #ffffff;
+}
+#PL_id tr:nth-child(odd) {
+   background-color: #f4f4f4;
 }
 
 table tr:nth-child(even) {
@@ -48,7 +67,14 @@ table th {
     font-size: small;
     color: white;
 }
+table tr:hover {
+    background-color: #d6015e;
 
+}
+#PL_id tr:hover {
+    background-color: #d6015e;
+
+}
 .form-signin {
   max-width: 0%;
   padding: 0%;
@@ -102,11 +128,7 @@ form .W{
     margin-bottom: 5px;
     margin-left: 5px;
 }
-form{
-    float: right;
-    margin-top: 10px;
-    margin-right: 5px;
-}
+
 .btn{
     float: right;
     margin-top: 6px;
@@ -228,4 +250,71 @@ h2{
     padding-left: 17.7%;
     width: 63%;
     position:absolute;
+}
+#selectedID:hover  {
+  display: contents ;
+}
+select  {
+
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    list-style-type: none;
+    overflow: hidden;
+    background-color: #38003c;
+    border-color: #38003c;
+    -moz-text-size-adjust:auto ;
+     margin-right: 34%;
+    display: block;
+    padding: 35px;
+    font-size:medium;
+}
+#formID{
+ margin-right: 33.7%;
+
+}
+select:hover {
+    background-color: #c6015b;
+    color: #ffffff;
+    font-size:medium;
+
+}
+option:hover {
+    background-color: #38003c;
+    font-size: large;
+    color: #ffffff;
+}
+
+#AT{
+     margin-top: 15%;
+     right: 0;
+     position: relative;
+}
+#HT{
+    right:0;
+    position: relative;
+
+}
+#HT:hover tr {
+    color: #e90052;
+}
+
+
+#AT:hover tr{
+    color: #fdb45c;
+
+}
+
+#PLT{
+    right: 0;
+
+}
+#chart{
+    left: 0;
+}
+#fofo{
+    float: right;
+}
+#Tea1{
+    float: left;
 }

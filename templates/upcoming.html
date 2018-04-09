@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='StyleSheet.css') }}">
     <script type="text/javascript" src="static/js/jquery.js"></script>
     <script type="text/javascript" src="static/js/jquery.dataTables.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="static/js/popper.min.js"></script>
+    <script type="text/javascript" src="static/js/bootstrapV4.js"></script>
+    <script type="text/javascript" src="static/js/table.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="static/jquery.dataTables.css" />
     <style type="text/css">
         table {
             width: 100%;
@@ -38,10 +42,10 @@
             }
         }
     </script>
-    <script type="text/javascript" src="static/js/signUp.js"></script>
+
     <link rel="stylesheet" href="{{ url_for('static', filename='StyleSheet.css') }}">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Upcomming</title>
 
 </head>
 <body onload="makeTableScroll()">
@@ -50,11 +54,11 @@
     <img class="img" src=" static/TeamsPic/arsenal_football_club_logo_by_lemongraphic-d3gg6no.png "
          style="width:60px;height:60px;border:0;">
 </a>
-<a href="/Manchester_City">
+<a href="/Manchester City">
     <img class="img" src=" static/TeamsPic/1024px-Manchester_City_FC_badge.svg.png "
          style="width:60px;height:60px;border:0;">
 </a>
-<a href="/Manchester_United">
+<a href="/Manchester United">
     <img class="img" src=" static/TeamsPic/Man United.png " style="width:60px;height:60px;border:0;">
 </a>
 <a href="/Liverpool">
@@ -66,20 +70,20 @@
 <a href="/Southampton">
     <img class="img" src=" static/TeamsPic/180px-FC_Southampton.svg.png " style="width:60px;height:60px;border:0;">
 </a>
-<a href="/Leicester_City">
+<a href="/Leicester City">
     <img class="img" src=" static/TeamsPic/220px-Leicester_City_crest.svg.png "
          style="width:60px;height:60px;border:0;">
 </a>
 <a href="/Everton">
     <img class="img" src=" static/TeamsPic/220px-Everton_FC_logo.svg.png " style="width:60px;height:60px;border:0;">
 </a>
-<a href="/Swansea_City">
+<a href="/Swansea City">
     <img class="img" src=" static/TeamsPic/Swansea_City_AFC_logo.svg.png" style="width:60px;height:60px;border:0;">
 </a>
 <a href="/Speiers">
     <img class="img" src=" static/TeamsPic/sp.png " style="width:60px;height:60px;border:0;">
 </a>
-<a href="/Newcastle_United">
+<a href="/Newcastle United">
     <img class="img" src=" static/TeamsPic/Newcastle_United_Logo.svg.png " style="width:60px;height:60px;border:0;">
 </a>
 <a href="/Sunderland">
@@ -121,88 +125,54 @@
     </a>
 
     {% for item in nav.top %}
-        <li class="{{ 'active' if item.is_active else '' }}">
-            {{ item }}
-            {% if item.items %}
-            {% endif %}
-        </li>
+    <li class="{{ 'active' if item.is_active else '' }}">
+        {{ item }}
+        {% if item.items %}
+        {% endif %}
+    </li>
     {% endfor %}
 </ul>
-
-
-<form id="Predict" class="Predict" method="GET">
-    <label for="inputName" class="sr-only">Home</label>
-    <input type="name" name="inputName" id="inputName" class="form-control" placeholder="Name" required
-           autofocus>
-    <label for="inputEmail" class="sr-only">Away</label>
-    <input type="email" name="inputEmail" id="inputEmail" class="form-control" placeholder="Email address"
-           required autofocus>
-    <button id="btnSignUp" class="btn btn-lg btn-primary btn-block" type="button">Sign up</button>
-</form>
-<table id="HomeResultTable">
-     <th>ID</th>
-     <th>Home Team</th>
-     <th>Time</th>
-     <th>Date</th>
-     <th>Away Team</th>
-     {% for row in k %}
-         <tr class="trs" data-toggle="modal" data-target="#myModal">
-             <td id="{{ row.Id }}" class="id">{{ row["Id"] }}</td>
-             <td id="home"  class="home">{{ row["home"] }}</td>
-             <td id="away" class="away">{{ row["away"] }}</td>
-         </tr>
-     {% endfor %}
-</table>
-<div class="HomeResult">
-    <table id="HomeResultTable">
-        <th>ID</th>
-        <th>Home Team</th>
-        <th>Time</th>
-        <th>Date</th>
-        <th>Away Team</th>
-        {% for row in Fixtures %}
-            {% set id = row[0] %}
-            {% set home = row[1]| string %}
-            {% set time = row[2]| string %}
-            {% set date = row[3]| string %}
-            {% set away = row[4]| string %}
-            <tr class="trs" data-toggle="modal" data-target="#myModal"
-                >
-                <td id="{{ id }}" onclick="findMatch({{ id | tojson}})" class="id">{{ id }}</td>
-                <td id="home"  class="home">{{ home }}</td>
-                <td>{{ time }}</td>
-                <td>{{ date }}</td>
-                <td id="away" class="away">{{ away }}</td>
-            </tr>
-        {% endfor %}
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <form class="Match" action="{{ url_for('M') }}" method="post" role="form">
-                            <div class="form-group">
-                                <label for="Team1">Team1:</label>
-                                <input type="text" class="form-control" id="Team1" name="Team1"
-                                       placeholder="First Team"><s> </s>
-                                <label for="Team2">Team2:</label>
-                                <input type="text" class="form-control" id="Team2" name="Team2"
-                                       placeholder="Second Team">
-                                <br>
-                                <button type="submit" class="W">Who Win</button>
+<div class="nleftArea">
+    <table id="Upcomming_id" class="display">
+        <thead>
+        <tr>
+            <th>Home Team</th>
+            <th>Time</th>
+            <th>Date</th>
+            <th>Away Team</th>
+        </tr>
+        </thead>
+        <tbody id="UpcommingTable"></tbody>
+    </table>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog" >
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <form class="form-inline" method="POST" action="{{ url_for('M')}}">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon">Home</span>
+                                <select id="Tea1" name="Team11_select" class="selectpicker form-control">
+                                </select>
+                                <span class="input-group-addon">Away</span>
+                                <select id="Tea2" name="Team22_select" class="selectpicker form-control">
+                                </select>
                             </div>
-                        </form>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
+                            <button id="bt" type="submit" class="btn btn-default">Predict</button>
+                            {{ msg }}
+                        </div>
+                    </form>
+
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
-
-
-    </table>
-
+    </div>
 </div>
-<script type="text/javascript" src="static/js/signUp.js"></script>
+</div>
+</div>
+
 </body>
 </html>
