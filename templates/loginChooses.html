@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+<form id="formID" class="form-inline" method="POST" action="{{ url_for('loginChooses') }}">
+                <select id="Team" name="Team11_select" class="selectpicker form-control" onchange='this.form.submit()'>
+                    {% for o in dataH %}
+                    <option id="selectedID" value="{{ o.name }}">{{ o.name }}</option>
+                    {% endfor %}
+                </select>
+         </form>
+</body>
+</html>

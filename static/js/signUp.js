@@ -1,31 +1,8 @@
-var rootUrl="http://127.0.0.1:5000/rest/KK";
-
-var $ = function (id){
-    return document.getElementById(id);
-};
-
-
-var findMatch = function (id) {
-alert(id);
-    $.ajax({
-        type: 'GET',
-         url: rootUrl + '/' + id,
-        dataType: "json",
-        success: renderList
-        });
-};
-
-var renderList = function (data) {
-    $('#Team1').val(data.home);
-    $('#Team2').val(data.away);
-
-
-};
 
 var signup=function () {
    $.ajax({
             url: '/signUp',
-            data: $('form').serialize(),
+            data: $("#form-signin"),
             type: 'POST',
             success: function (response) {
                 console.log(response);
@@ -39,11 +16,6 @@ var signup=function () {
         });
 };
 
-$("Rhome").onclick = function ()
-{
-var home = document.getElementById(this);
-alert(home)
-}
 
 //$(document).on('click','#btnSignUp', function(){
 window.onclick = function()
@@ -84,41 +56,44 @@ document.onload = function()
     });
 };
 
-var findAllT=function(){
-	$.ajax({
-		   type:'GET',
-		   url: rootUrl,
-		   dataType:"json",
-		   success:renderTable
-		   });
+var findAllT = function () {
+    $.ajax({
+        type: 'GET',
+        url: rootUrl,
+        dataType: "json",
+        success: renderTable
+    });
 };
-$(document).ready(function() {
-    var table = $('#HomeResultTable').DataTable();
 
-    $('button').click( function() {
-        var data = table.$('input, select').serialize();
-        alert(
-            "The following data would have been submitted to the server: \n\n"+
-            data.substr( 0, 120 )+'...'
-        );
-        return false;
-    } );
-} );
 var renderTable = function (data) {
+    list = data;
     console.log("response");
-    $.each(data, function (index, match) {
-        $('#ticketTable').append('<tr><td>' + match.Id + '</td>' +
+    $.each(list, function (index, match) {
+        $('#ticketTable').append('<tr><td>' + match.id + '</td>' +
             '<td>' + match.home + '</td>' +
             '<td>' + match.away + '</td>' +
-            '</td><td id="' + match.Id + '"><a href="#">' + '<button type="button" id ="EB" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal" onclick="findById(' + match.id + ')">Edit</button>' +
+            '</td><td id="' + match.id + '"><a href="#">' + '<button type="button" id ="EB" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal" onclick="findById(' + match.id + ')">Edit</button>' +
             '</td></tr>');
+    })
+};
 
-});
-$('#table_id').DataTable();
 
-$(document).ready(function(){
-	findAllT();
-});
+var findMatch = function (id) {
+
+    $.ajax({
+        type: 'GET',
+         url: rootUrl + '/' + id,
+        dataType: "json",
+        success: renderList
+        });
+};
+
+var renderList = function (data) {
+    $('#Team1').val(data.home);
+    $('#Team2').val(data.away);
+
+
+};
 
 
 // Get the elements with class="column"

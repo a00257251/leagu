@@ -3,6 +3,7 @@ body            { font-family: sans-serif; background: rgba(255, 255, 255, 0.45)
 
 
 ul {
+    position: sticky;
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -16,6 +17,7 @@ li {
 }
 
 li a {
+    position: sticky;
     display: block;
     -moz-text-size-adjust:auto ;
     color: white;
@@ -317,4 +319,12 @@ option:hover {
 }
 #Tea1{
     float: left;
+}
+#comments{
+    border: 1px solid green;
+    color: #e90052;
+    border-color: #e90052;
+    font-size: small;
+    margin: auto;
+    padding: auto;
 }

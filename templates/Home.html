@@ -79,7 +79,6 @@
     <img class="img" src=" static/TeamsPic/185px-Watford.svg.png " style="width:60px;height:60px;border:0;">
 </a>
 <div>
-
     <ul>
         <a href="/">
             <img id="logo" src=" static/TeamsPic/LogoSample_ByTailorBrands52.jpg">
@@ -91,6 +90,8 @@
             {% endif %}
         </li>
         {% endfor %}
+        <li><a href="/logout">Logout</a></li>
+        <li><a href="/loginChooses">{{name}}</a></li>
          <form id="formID" class="form-inline" method="POST" action="{{ url_for('team') }}">
                 <select id="Team" name="Team11_select" class="selectpicker form-control" onchange='this.form.submit()'>
                     {% for o in dataH %}
@@ -98,6 +99,7 @@
                     {% endfor %}
                 </select>
          </form>
+
     </ul>
 </div>
 <table>

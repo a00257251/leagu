@@ -33,12 +33,43 @@ function drag(ev) {
 }
 }
 </script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
-      <link rel="stylesheet" href="{{ url_for('static', filename='StyleSheet.css') }}">
+    <script type="text/javascript">
+    window.onload = function () {
+var ctx = document.getElementById("myCharts").getContext('2d');
+var myChart = new Chart(ctx, {
+
+//pie if it doesn't work/ polarArea
+  type: 'pie',
+  data: {
+labels: [{% for item in labels %}
+                  "{{item}}",
+              {% endfor %}],
+datasets: [{
+  backgroundColor: [
+"#ff9933",
+"#666699",
+"#99003d"
+  ],
+  data: [{% for item in values %}
+                      {{item}},
+                    {% endfor %}]
+}]
+  },
+  options: {
+title: {
+display: true,
+text: 'The percentage of winnig or drowing'
+}
+  }
+})};
+</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='StyleSheet.css') }}">
     <meta charset="utf-8">
     <title>Leauge+</title>
 </head>
-
+<body>
 
 <br>
 <img id="Arsenal" class="img" src=" static/TeamsPic/arsenal_football_club_logo_by_lemongraphic-d3gg6no.png " draggable="true" ondragstart="drag(event)" style="width:60px;height:60px;border:0;">
@@ -59,9 +90,6 @@ function drag(ev) {
 <img id="Bournemouth" class="img" src=" static/TeamsPic/AFC_Bournemouth_(2013).svg.png " draggable="true" ondragstart="drag(event)" style="width:60px;height:60px;border:0;">
 <img id="West_Bromwich_Albion" class="img" src=" static/TeamsPic/160px-West_Bromwich_Albion.svg.png " draggable="true" ondragstart="drag(event)" style="width:60px;height:60px;border:0;">
 <img id="Watford" class="img" src=" static/TeamsPic/220px-Everton_FC_logo.svg.png " draggable="true" ondragstart="drag(event)" style="width:60px;height:60px;border:0;">
-
-
-
 <ul>
 <img id="logo"  src=" static/TeamsPic/LogoSample_ByTailorBrands52.jpg">
     {% for item in nav.top %}
@@ -72,8 +100,6 @@ function drag(ev) {
     </li>
     {% endfor %}
 </ul>
-
-
 <form id="fofo" class="form-inline" method="POST" action="{{ url_for('M') }}">
   <div class="form-group">
     <div class="input-group">
@@ -93,6 +119,8 @@ function drag(ev) {
     {{ msg }}
   </div>
 </form>
+
+
 
 <div id="HT">
 <p>Last 4 Home matches for {{ T1 }}</p>
@@ -141,73 +169,22 @@ function drag(ev) {
         {% endfor %}
         <tr>
 </table>
+<canvas id="myCharts" width="50" height="25"></canvas>
 </div>
-<div id="chartDiv">
-  <h1>{{ title }}</h1>
+<div id="comments">
+<aside>
+{% for us in comments %}
+<p>{{ us['userid'] }}</p>
+<p> {{ us['des'] }}</p>
+<p> {{ us['team'] }}</p>
+<br>
+{% endfor %}
+</aside>
+<div id="tweets">
 
-    <canvas id="chart" width="600" height="400"></canvas>
-    <script>
-      var pieData = [
-        {% for values, label, colors in f %}
-          {
-            value: "{{values}}",
-            label: "{{label}}",
-            color : "{{colors}}"
-          },
-        {% endfor %}
-
-      ];
-      // get bar chart canvas
-      var mychart = document.getElementById("chart").getContext("2d");
-      steps = 10
-      max = {{ max }}
-      // draw pie chart
-      new Chart(document.getElementById("chart").getContext("2d")).Pie(pieData);
-    </script>
 </div>
-<div>
-<canvas id="myChart" width="400" height="400"></canvas>
-<script>
-var ctx = document.getElementById("myChart");
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
-        }
-    }
 
-}).getContent("2d");
 
-</script>
 </div>
 </body>
 </html>

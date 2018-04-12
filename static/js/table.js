@@ -39,6 +39,8 @@ console.log("response");
     $.each(data, function (index, match) {
         $('#Tea1').append('<option value="'+ match.home +'" selected>'+ match.home +'</option>');
         $('#Tea2').append('<option value="'+ match.away +'" selected>'+ match.away +'</option>');
+        $('#Tea').append('<option value="'+ match.home +'" selected>'+ match.home +'</option>');
+        $('#Tea').append('<option value="'+ match.away +'" selected>'+ match.away +'</option>');
    })
 
 };
