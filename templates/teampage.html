@@ -85,7 +85,7 @@
 <div>
 <p></p>
 <table>
-<th>N</th><th>Player Name</th><th>Played</th><th>W</th><th>D</th><th>L</th><th>F</th><th>A</th><th>GD</th><th>PTS</th>
+<th>Player Name</th><th>Played</th><th>Goal</th><th>Yellow cards</th><th>Red cards</th><th>Fouls</th><th>Team</th>
         {% for d in players %}
         <tr>
         {% for td in d %}
@@ -95,8 +95,24 @@
         {% endfor %}
 </table>
 </div>
-<div id="tweetTeam">
-
+<br><br><br><br><br><br>
+<div>
+    <div id="NewsList">
+        <div class="row">
+            <h2>Tweets:</h2>
+            <div class="col-sm-6 col-md-4 col-lg-6">
+                {% for t in tw %}
+                <div class="card">
+                    <p><img src="{{t['userPhoto']}}"></p>
+                    <p>Username : {{t['username']}}</p>
+                    <p>Tweet : {{t['tweet']}}</p>
+                    <p>Time : {{t['TweetTime']}}</p>
+                    <p>url : {{t['url']}}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

@@ -20,8 +20,10 @@ var renderTable = function (data) {
             '</td></tr>');
 
     })
+    $('#Upcomming_id').DataTable();
+
 };
-$('#Upcomming_id').DataTable();
+
 
 
 var findMatch = function (Id) {

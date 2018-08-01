@@ -9,7 +9,7 @@
     {% endblock %}
 </head>
 <body>
-<a href="/Arsenal">
+<a href="https://www.arsenal.com/">
     <img class="img" src=" static/TeamsPic/arsenal_football_club_logo_by_lemongraphic-d3gg6no.png "
          style="width:60px;height:60px;border:0;">
 </a>
@@ -90,8 +90,8 @@
             {% endif %}
         </li>
         {% endfor %}
-        <li><a href="/logout">Logout</a></li>
-        <li><a href="/loginChooses">{{name}}</a></li>
+        <li><a href="/loginDash">{{name}}</a></li>
+        <li><a href="/login">Log In</a></li>
          <form id="formID" class="form-inline" method="POST" action="{{ url_for('team') }}">
                 <select id="Team" name="Team11_select" class="selectpicker form-control" onchange='this.form.submit()'>
                     {% for o in dataH %}
@@ -139,28 +139,19 @@
 </div>
 
 
-<div class="RHomeResult">
+<div id="RHomeR">
     <table id="RHomeResultTable">
-        <th>ID</th>
         <th>Home Team</th>
+        <th>Away Team</th>
         <th>Time</th>
         <th>Date</th>
-        <th>Away Team</th>
         {% for row in Fixtures %}
-        {% set id = row[0] %}
-        {% set home = row[1]| string%}
-        {% set time = row[2]| string %}
-        {% set date = row[3]| string %}
-        {% set away = row[4]| string %}
-        <tr class="trs" onclick="renderList({{ id }},{{ home | string}},{{ away | string}});">
-            <td id="{{ id }}" class="id"><a onclick="findMatch({{ id }})"> {{ id }}</a></td>
-            <td id="{{ home }}" class="home"><a onclick="findMatch({{ home }})">{{ home }}</a></td>
-            <td>{{ time }}</td>
-            <td>{{ date }}</td>
-            <td id="{{ away }}" class="away">{{ away }}</td>
-        </tr>
-        {% endfor %}
-
+            <tr>
+                {% for d in row %}
+                <td>{{ d }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
     </table>
 </div>
 

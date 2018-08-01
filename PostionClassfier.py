@@ -101,7 +101,7 @@ from sklearn import tree
 import matplotlib.pyplot as plt
 warnings.simplefilter("ignore")
 from sklearn import preprocessing
-
+import matplotlib.pyplot as plt
 
 connection = connection.MySQLConnection(user='admin', password='admin',
                                         host='localhost',
@@ -164,11 +164,10 @@ goal_model_data = pd.concat([data[['Home','Away','HS','HP','HKPass','HSHOnTarget
           data[['Away','Home','AAS','AP','AKPass','ASHOnTarget']].assign(home=0).rename(
           columns={'Away':'team', 'AP':'P','AKPass':'KPass','ASHOnTarget':'SHOnTarget','Home':'opponent','AAS':'goals'})])
 
-#print(goal_model_data)
+print(goal_model_data)
 #poisson_model = smf.glm(formula="goals ~ home + team + opponent", data=goal_model_data,
- #                       family=sm.families.Poisson()).fit()
+ #                     family=sm.families.Poisson()).fit()
 #print poisson_model.summary()
-
 #print poisson_model.predict(pd.DataFrame(data={'team': 'Chelsea', 'opponent': 'Manchester City',
 #                                       'home':0},index=[1]))
 
@@ -179,23 +178,73 @@ goal_model_data = pd.concat([data[['Home','Away','HS','HP','HKPass','HSHOnTarget
 
 def simulate_match(homeTeam, awayTeam, max_goals=10):
 
-    poisson_model = smf.glm(formula="goals ~SHOnTarget+ P + home + team + opponent", data=goal_model_data,
+    poisson_model = smf.glm(formula="goals ~ home + team + opponent", data=goal_model_data,
                             family=sm.families.Poisson()).fit() #5.33333391412 # 5.7457 8982881
 
-    home_goals_avg = poisson_model.predict(pd.DataFrame(data={'SHOnTarget': data.HSHOnTarget,'P': data.HP, 'team': homeTeam,'opponent': awayTeam, 'home':1},index=[9])).values[0]
+    home_goals_avg = poisson_model.predict(pd.DataFrame(data={'team': homeTeam,'opponent': awayTeam, 'home':1},index=[9])).values[0]
     print(home_goals_avg)
-    away_goals_avg = poisson_model.predict(pd.DataFrame(data={'SHOnTarget': data.ASHOnTarget,'P': data.AP, 'team': awayTeam,'opponent': homeTeam,'home':0},index=[1])).values[0]
+    away_goals_avg = poisson_model.predict(pd.DataFrame(data={'team': awayTeam,'opponent': homeTeam,'home':0},index=[1])).values[0]
     print(away_goals_avg)
     team_pred = [[poisson.pmf(i, team_avg) for i in range(0, max_goals+1)] for team_avg in [home_goals_avg, away_goals_avg]]
-
+    print team_pred
+    print team_avg
     return(np.outer(np.array(team_pred[0]), np.array(team_pred[1])))
 
-#print simulate_match('Swansea City', 'Bournemouth', max_goals=3)
+#print simulate_match('Everton', 'Newcastle United', max_goals=3)
 
-#chel_sun = simulate_match('Bournemouth', 'Liverpool', max_goals=10)
+chel_sun = simulate_match('Everton', 'Newcastle United', max_goals=3)
 
-#print chel_sun
+print chel_sun
 
-#print np.sum(np.tril(chel_sun, -1))
-#print np.sum(np.diag(chel_sun))
-#print np.sum(np.triu(chel_sun, 1))
+print np.sum(np.tril(chel_sun, -1))
+print np.sum(np.diag(chel_sun))
+print np.sum(np.triu(chel_sun, 1))
+
+def HowH(Home):
+    dfW = pd.read_sql("SELECT COUNT(result) FROM results where home='" + str(Home)+ "' and result='H' ;", cnx)
+    dfD = pd.read_sql("SELECT COUNT(result) FROM results where home='" + str(Home)+ "' and result='D' ;", cnx)
+    dfL = pd.read_sql("SELECT COUNT(result) FROM results where home='" + str(Home)+ "' and result='A' ;", cnx)
+    print[dfW,dfD,dfL]
+
+def probalityH(Home):
+    dfH = pd.read_sql("SELECT HKPass,HP,HS ,AAS ,result FROM results where home='" + str(Home)+ "' ;", cnx)
+
+    X = dfH.values[:,0:3]
+    Y = dfH.values[:,4]
+    X_train, X_test, y_train, y_test = train_test_split( X, Y, test_size = 0.2, random_state = 100)
+
+    clf = MLPClassifier(solver='lbfgs', alpha=1e-5,
+                        hidden_layer_sizes=(5, 2), random_state=1)
+    clf.fit(X_train, y_train)
+
+    print('----Chealsea--------predict---------y---------')
+    print clf.predict(X_test)
+    print('--------------proba-----------------')
+    Chealsea =  clf.predict_proba(X_test)
+    Hwin =Chealsea[0][2] *100
+    Hdrow =Chealsea[0][1] *100
+    Hloss =Chealsea[0][0] *100
+    return [Hwin, Hdrow, Hloss]
+
+print probalityH('Chelsea')
+
+def probalityA(Away):
+    dfA = pd.read_sql("SELECT AKPass,AP,HS ,AAS ,result FROM results where away='" + str(Away)+ "'; ", cnx)
+
+    X = dfA.values[:, 0:3]
+    Y = dfA.values[:, 4]
+    X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.2, random_state=100)
+    clf = MLPClassifier(solver='lbfgs', alpha=1e-5,
+                        hidden_layer_sizes=(5, 2), random_state=1)
+    clf.fit(X_train, y_train)
+
+    print('----Chealsea--------predict---------y---------')
+    print clf.predict(X_test)
+    print('--------------proba-----------------')
+    Chealsea = clf.predict_proba(X_test)
+    Awin = Chealsea[0][2] * 100
+    Adrow = Chealsea[0][1] * 100
+    Aloss = Chealsea[0][0] * 100
+    return [Awin,Adrow,Aloss]
+
+

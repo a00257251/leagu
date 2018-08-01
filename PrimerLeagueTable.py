@@ -9,7 +9,7 @@ from sqlalchemy import create_engine
 import MySQLdb
 import ast
 
-my_url = "http://www.skysports.com/premier-league-table/2014"
+my_url = "http://www.skysports.com/premier-league-table"
 
 cb = urlO(my_url)
 page = cb.read()
@@ -97,7 +97,7 @@ def TableSearch(tableClass,index):
 
 def sql(N, Team, Pl, W, D, L,F,A,GD,Pts):
     cursor = cnx.cursor()
-    sql = "INSERT INTO team14 (N, Team, Pl, W, D, L,F,A,GD,Pts) VALUES (%s, %s, %s, %s, %s, %s,%s,%s, %s, %s);"
+    sql = "INSERT INTO team (N, Team, Pl, W, D, L,F,A,GD,Pts) VALUES (%s, %s, %s, %s, %s, %s,%s,%s, %s, %s);"
     data = (str(N), str(Team),str(Pl), str(W),str(D), str(L),str(F),str(A),str(GD),str(Pts))
     print(data)
     cursor.execute(sql, data)
@@ -106,10 +106,9 @@ def sql(N, Team, Pl, W, D, L,F,A,GD,Pts):
 
 def main():
     tableClass = 'standing-table__table'
-    T = True
-    Delete(T)
     i = 0
     TableSearch(tableClass, i)
+
 
 #df = pd.DataFrame(pd.read_csv('Primier League Table5.csv', sep=',',dtype=str ))
 #print df

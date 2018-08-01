@@ -10,6 +10,17 @@
     <title>login</title>
 </head>
 <body>
+ <nav>
+  <div>
+    <ul>
+        <a href="/">
+            <img id="logo" src=" static/TeamsPic/LogoSample_ByTailorBrands52.jpg">
+        </a>
+         <li><a href="/">Home</a></li>
+         <li><a href="/showSignUp">Sign Up</a></li>
+    </ul>
+</div>
+        </nav>
     <div class="jumbotron">
         <h1>Footballer</h1>
         <form id="form-signin" class="form-signin" method="post" action="{{ url_for('login')}}">
@@ -22,6 +33,8 @@
             <button id="btnlogin" type="submit" class="btn btn-lg btn-primary btn-block" type="button">Sign up</button>
         </form>
     </div>
+ <br>
+    <p><a href="/showSignUp">Sign Up</a> if you do not have an account</p>
     <footer class="footer">
         <p>©League+ 2018</p>
     </footer>

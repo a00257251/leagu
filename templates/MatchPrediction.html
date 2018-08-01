@@ -1,29 +1,6 @@
 <!doctype html>
 <html>
 <head>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-<script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <script type="text/javascript">
-
-
-        // Get the elements with class="column"
-        var elements = document.getElementsByClassName("card");
-
-        // Declare a loop variable
-        var i;
-
-        // Grid View
-        function gridView() {
-            for (i = 0; i < elements.length; i++) {
-                elements[i].style.width = "50%";
-            }
-        }
-    </script>
 <style>
 #div1, #div2 {
     float: left;
@@ -55,9 +32,8 @@ function drag(ev) {
 }
 }
 </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
-    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='StyleSheet.css') }}">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+      <link rel="stylesheet" href="{{ url_for('static', filename='StyleSheet.css') }}">
     <meta charset="utf-8">
     <title>Leauge+</title>
 </head>
@@ -82,6 +58,9 @@ function drag(ev) {
 <img id="Bournemouth" class="img" src=" static/TeamsPic/AFC_Bournemouth_(2013).svg.png " draggable="true" ondragstart="drag(event)" style="width:60px;height:60px;border:0;">
 <img id="West_Bromwich_Albion" class="img" src=" static/TeamsPic/160px-West_Bromwich_Albion.svg.png " draggable="true" ondragstart="drag(event)" style="width:60px;height:60px;border:0;">
 <img id="Watford" class="img" src=" static/TeamsPic/220px-Everton_FC_logo.svg.png " draggable="true" ondragstart="drag(event)" style="width:60px;height:60px;border:0;">
+
+
+
 <ul>
 <img id="logo"  src=" static/TeamsPic/LogoSample_ByTailorBrands52.jpg">
     {% for item in nav.top %}
@@ -93,71 +72,31 @@ function drag(ev) {
     {% endfor %}
 </ul>
 
-<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
 
-    <script type="text/javascript" src="static/js/table.js"></script>
-    <script type="text/javascript">
-  Highcharts.chart('container', {
-    chart: {
-        plotBackgroundColor: null,
-        plotBorderWidth: null,
-        plotShadow: false,
-        type: 'pie'
-    },
-    title: {
-        text: 'Prediction for {{T1}} and {{T2}} Match'
-    },
-    tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-    },
-    plotOptions: {
-        pie: {
-            allowPointSelect: true,
-            cursor: 'pointer',
-            dataLabels: {
-                enabled: false
-            },
-            showInLegend: true
-        }
-    },
-    series: [{
-        name: 'Percentage of Winning',
-        colorByPoint: true,
-        data: [{
-            name: '{{T1}}',
-            y:{{H}},
-            sliced: true,
-            selected: true
-        }, {
-            name: 'Drow',
-            y: {{D}}
-        }, {
-            name: '{{T2}}',
-            y: {{A}}
-        }
-        ]
-    }]
-});
-    </script>
+<form class="form-inline" method="POST" action="{{ url_for('Z') }}">
+  <div class="form-group">
+    <div class="input-group">
+        <span class="input-group-addon">Please select</span>
+            <select name="Team11_select" class="selectpicker form-control">
+              {% for o in dataH %}
+              <option value="{{ o.name }}">{{ o.name }}</option>
+              {% endfor %}
+            </select>
+            <select name="Team22_select" class="selectpicker form-control">
+              {% for o in dataA %}
+              <option value="{{ o.name }}">{{ o.name }}</option>
+              {% endfor %}
+            </select>
+    </div>
 
+    <button type="submit" class="btn btn-default">Go</button>
+    {{ msg }}
+  </div>
+</form>
 
-<div id="HT">
-<p>Last 4 Home matches for {{ T1 }}</p>
+<div>
+<p></p>
 <table>
-<th>Home</th><th>HS</th><th>Away</th><th>AAS</th><th>Date</th><th>Result</th>
-        {% for d in last1 %}
-        <tr>
-        {% for td in d %}
-        <td>{{ td }}</td>
-            {% endfor %}
-         </tr>
-        {% endfor %}
-</table>
-</div>
-<br>
-<div id="PLT">
-<p>Teams order in th Premier league Table</p>
-<table >
 <th>N</th><th>Team</th><th>Played</th><th>W</th><th>D</th><th>L</th><th>F</th><th>A</th><th>GD</th><th>PTS</th>
         {% for d in teamStat11 %}
         <tr>
@@ -176,10 +115,23 @@ function drag(ev) {
         <tr>
 </table>
 </div>
-<div id="AT">
-<br>
+<div>
+<p>Last 4 Home matches for {{ T1 }}</p>
 <table>
-    <p>Last 4 Away matches for {{ T2 }}</p>
+<th>Home</th><th>HS</th><th>Away</th><th>AAS</th><th>Date</th><th>Result</th>
+        {% for d in last1 %}
+        <tr>
+        {% for td in d %}
+        <td>{{ td }}</td>
+            {% endfor %}
+         </tr>
+        {% endfor %}
+</table>
+</div>
+<div>
+<p>Last 4 Away matches for {{ T2 }}</p>
+<table>
+<th>Home</th><th>HS</th><th>Away</th><th>AAS</th><th>Date</th><th>Result</th>
       {% for d in last2 %}
         <tr>
         {% for td in d %}
@@ -189,41 +141,29 @@ function drag(ev) {
         {% endfor %}
         <tr>
 </table>
-<canvas id="myCharts" width="50" height="25"></canvas>
 </div>
-<br>
-<br>
 <div>
-<div  id= "things", class="col-sm-6 col-md-4 col-lg-3">
-    <h2>Users Prediction :</h2>
-    {% for us in comments %}
-    <div class="comm">
-        <p> username : {{ us['userid'] }}</p>
-        <p>Tweet :  {{ us['des'] }}</p>
-        <p>Chosen Team : {{ us['team'] }}</p>
-        <br>
-    </div>
-    {% endfor %}
+  <h1>{{ title }}</h1>
+
+    <canvas id="chart" width="600" height="400"></canvas>
+    <script>
+      var pieData = [
+        {% for values, label, colors in set %}
+          {
+            value: "{{values}}",
+            label: "{{label}}",
+            color : "{{colors}}"
+          },
+        {% endfor %}
+      ];
+      // get bar chart canvas
+      var mychart = document.getElementById("chart").getContext("2d");
+      steps = 10
+      max = {{ max }}
+      // draw pie chart
+      new Chart(document.getElementById("chart").getContext("2d")).Pie(pieData);
+    </script>
 </div>
-<br><br><br><br><br><br>
-<div>
-    <div id="NewsListt">
-        <div class="row">
-            <h2>Tweets:</h2>
-            <div class="col-sm-6 col-md-4 col-lg-12">
-                {% for t in stw %}
-                <div class="card">
-                    <p><img src="{{t['userPhoto']}}"></p>
-                    <p>Username : {{t['username']}}</p>
-                    <p>Tweet : {{t['tweet']}}</p>
-                    <p>Time : {{t['TweetTime']}}</p>
-                    <p>url : {{t['url']}}</p>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-</div>
-</div>
+
 </body>
 </html>

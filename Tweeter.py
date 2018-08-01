@@ -3,10 +3,10 @@ from db import Conn
 
 
 
-ConsumerKey = "JuNMP4UrBrmcBo6grX4UY1zm1"
-ConsumerSecret = "KJZWQiSJ2oWEzVT725f5Mpo8HeamxE36FOg92bbPFXmBSOhDsC"
-AccessToken = "2946770101-qJUUWwWR4BkNtxwbUUfZfBUQXuyO0w1CutpbGCb"
-AccessTokenSecret = "JNnzdWuFVRnB82CB9dGbleyxTDJcSbISN8qQWSXBJ3Pco"
+ConsumerKey = "zRadodQGiVVTEKXvfcyvj3Hse"
+ConsumerSecret = "	1PWl5yumb8ejRu6nHqVsLdWioa8YfuWVUfxk3fv0dJfrIef0qo"
+AccessToken = "2946770101-lVtTGKhw7l6G6WqYpynlmUrh3qJE4B8fetodWRr"
+AccessTokenSecret = "	n7XCORdfvVXue8pQ7LcFbdC4J047gySOrKVfkG0hZAECm"
 
 
 
@@ -14,6 +14,8 @@ auth = tweepy.OAuthHandler(ConsumerKey, ConsumerSecret)
 auth.set_access_token(AccessToken, AccessTokenSecret)
 #print tweet.entities.get('hashtags')
 api = tweepy.API(auth)
+
+
 def tweetSearch(Search):
     sea = api.search(q=Search ,language = "en" ,rpp=100)
     print sea
@@ -107,8 +109,11 @@ def sql(username,userScreenName,tweet,photo,TweetTime,url,topic):
 
 def selectTweets(Search):
     cursor, cnx =Conn()
-    cursor.execute('''select username,tweet,userPhoto,TweetTime,url  from tweets WHERE topicName = %s ''', Search)
+    print(str(Search))
+    cursor.execute("select username,tweet,userPhoto,TweetTime,url  from tweets WHERE topicName='" + str(Search)+ "' ;")
+   # cursor.callproc('Search', (Search))
     comments = cursor.fetchall()
+    print(comments)
     comL = []
     for item in comments:
         i = {
@@ -116,17 +121,18 @@ def selectTweets(Search):
             'tweet': item[1],
             'userPhoto': item[2],
             'TweetTime': item[3],
-            'url': item[4],
+            'url': item[4]
         }
         comL.append(i)
+    print(comL)
     return comL
 
 
 
-
-
-
-
+#i = 'Arsenal'
+#tweetSearch(i)
+#o = selectTweets(i)
+#print(o)
 
 
 

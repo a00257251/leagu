@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='StyleSheet.css') }}">
     <meta charset="UTF-8">
     <title></title>
 </head>
 
 <body>
+
+ <nav>
+  <div>
+    <ul>
+            <img id="logo" src=" static/TeamsPic/LogoSample_ByTailorBrands52.jpg">
+
+    </ul>
+</div>
+     <br>
+
 <form id="formID" class="form-inline" method="POST" action="{{ url_for('loginChooses') }}">
+    <label for="selectedID"> Please Select your favorite Team : </label>
                 <select id="Team" name="Team11_select" class="selectpicker form-control" onchange='this.form.submit()'>
                     {% for o in dataH %}
                     <option id="selectedID" value="{{ o.name }}">{{ o.name }}</option>
@@ -14,4 +26,9 @@
                 </select>
          </form>
 </body>
+<div>
+    <footer class="footer">
+        <p>©League+ 2018</p>
+    </footer>
+</div>
 </html>
