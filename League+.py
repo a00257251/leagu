@@ -179,8 +179,8 @@ mail_settings = {
     "MAIL_USE_SSL": True,
     #"MAIL_USERNAME": os.environ['EMAIL_USER'],
     #"MAIL_PASSWORD": os.environ['EMAIL_PASSWORD']
-    "MAIL_USERNAME": 'osamacomm558@gmail.com',
-    "MAIL_PASSWORD": 'iamkingx558'
+    "MAIL_USERNAME": '',
+    "MAIL_PASSWORD": ''
 }
 
 app.config.update(mail_settings)
