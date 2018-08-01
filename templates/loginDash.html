@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type="text/javascript">
+
+
+        // Get the elements with class="column"
+        var elements = document.getElementsByClassName("card");
+
+        // Declare a loop variable
+        var i;
+
+        // Grid View
+        function gridView() {
+            for (i = 0; i < elements.length; i++) {
+                elements[i].style.width = "10%";
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='StyleSheet.css') }}">
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+</head>
+<body>
+<br>
+<img id="Arsenal" class="img" src="../static/TeamsPic/arsenal_football_club_logo_by_lemongraphic-d3gg6no.png "
+     draggable="true" ondragstart="drag(event)" style="width:60px;height:60px;border:0;">
+<img id="Manchester City" class="img" src="../static/TeamsPic/1024px-Manchester_City_FC_badge.svg.png " draggable="true"
+     ondragstart="drag(event)" style="width:60px;height:60px;border:0;">
+<img id="Liverpool" class="img" src="../static/TeamsPic/liverpool.png  " draggable="true" ondragstart="drag(event)"
+     style="width:60px;height:60px;border:0;">
+<img id="Manchester United" class="img" src="../static/TeamsPic/Man%20United.png " draggable="true"
+     ondragstart="drag(event)" style="width:60px;height:60px;border:0;">
+<img id="Chelsea" class="img" src="../static/TeamsPic/Chelsea_FC.svg.png " draggable="true" ondragstart="drag(event)"
+     style="width:60px;height:60px;border:0;">
+<img id="Southampton" class="img" src="../static/TeamsPic/180px-FC_Southampton.svg.png " draggable="true"
+     ondragstart="drag(event)" style="width:60px;height:60px;border:0;">
+<img id="Leicester City" class="img" src="../static/TeamsPic/220px-Leicester_City_crest.svg.png " draggable="true"
+     ondragstart="drag(event)" style="width:60px;height:60px;border:0;">
+<img id="Everton" class="img" src="../static/TeamsPic/220px-Everton_FC_logo.svg.png " draggable="true"
+     ondragstart="drag(event)" style="width:60px;height:60px;border:0;">
+<img id="Swansea City" class="img" src="../static/TeamsPic/Swansea_City_AFC_logo.svg.png " draggable="true"
+     ondragstart="drag(event)" style="width:60px;height:60px;border:0;">
+<img id="Tottenham Hotspur" class="img" src="../static/TeamsPic/sp.png  " draggable="true" ondragstart="drag(event)"
+     style="width:60px;height:60px;border:0;">
+<img id="Newcastle United" class="img" src="../static/TeamsPic/Newcastle_United_Logo.svg.png " draggable="true"
+     ondragstart="drag(event)" style="width:60px;height:60px;border:0;">
+<img id="Stoke City" class="img" src="../static/TeamsPic/220px-Stoke_City_FC.svg.png " draggable="true"
+     ondragstart="drag(event)" style="width:60px;height:60px;border:0;">
+<img id="Burnley" class="img" src="../static/TeamsPic/200px-Burnley_FC_badge.png " draggable="true"
+     ondragstart="drag(event)" style="width:60px;height:60px;border:0;">
+<img id="West Ham United" class="img" src="../static/TeamsPic/185px-West_Ham_United_FC_logo.svg.png " draggable="true"
+     ondragstart="drag(event)" style="width:60px;height:60px;border:0;">
+<img id="Huddersfield Town" class="img" src="../static/TeamsPic/Huddersfield_Town_A.F.C._logo.svg.png" draggable="true"
+     ondragstart="drag(event)" style="width:60px;height:60px;border:0;">
+<img id="Bournemouth" class="img" src="../static/TeamsPic/AFC_Bournemouth_(2013).svg.png " draggable="true"
+     ondragstart="drag(event)" style="width:60px;height:60px;border:0;">
+<img id="West_Bromwich_Albion" class="img" src="../static/TeamsPic/160px-West_Bromwich_Albion.svg.png " draggable="true"
+     ondragstart="drag(event)" style="width:60px;height:60px;border:0;">
+<img id="Watford" class="img" src="../static/TeamsPic/220px-Everton_FC_logo.svg.png " draggable="true"
+     ondragstart="drag(event)" style="width:60px;height:60px;border:0;">
+<div>
+    <ul>
+        <a href="/">
+            <img id="logo" src=" static/TeamsPic/LogoSample_ByTailorBrands52.jpg">
+        </a>
+
+        <li><a href="/loginDash">{{name}}</a></li>
+        <li><a href="/logout">Logout</a></li>
+    </ul>
+</div>
+<div id = "container">
+
+<br><br><br>
+
+
+<div id="played">
+    <p></p>
+    <table>
+        <th>N</th>
+        <th>Team</th>
+        <th>Played</th>
+        <th>W</th>
+        <th>D</th>
+        <th>L</th>
+        <th>F</th>
+        <th>A</th>
+        <th>GD</th>
+        <th>PTS</th>
+        {% for d in teamStat11 %}
+        <tr>
+            {% for td in d %}
+            <td>{{ td }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+
+    </table>
+</div>
+
+<br><br><br><br>
+
+<div id="ht">
+    <p>Last 4 Home matches for {{ T1 }}</p>
+    <table>
+        <th>Home</th>
+        <th>HS</th>
+        <th>Away</th>
+        <th>AAS</th>
+        <th>Date</th>
+        <th>Result</th>
+        {% for d in last1 %}
+        <tr>
+            {% for td in d %}
+            <td>{{ td }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<br><br><br><br>
+
+<div id="awayt">
+    <p>Last 4 Away matches for {{ T1 }}</p>
+    <table>
+        <th>Home</th>
+        <th>HS</th>
+        <th>Away</th>
+        <th>AAS</th>
+        <th>Date</th>
+        <th>Result</th>
+        {% for d in last2 %}
+        <tr>
+            {% for td in d %}
+            <td>{{ td }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+        <tr>
+    </table>
+</div>
+
+
+<br><br><br><br><br>
+<div id="players">
+    <p></p>
+    <table>
+       <th>Player Name</th><th>Played</th><th>Goal</th><th>Yellow cards</th><th>Red cards</th><th>Fouls</th><th>Team</th>
+        {% for d in players %}
+        <tr>
+            {% for td in d %}
+            <td>{{ td }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+</div>
+
+
+<br>
+<div  id= "things", class="col-sm-6 col-md-4 col-lg-3">
+    {% for us in comments %}
+    <div class="card">
+        <p>Tweet :  {{ us['des'] }}</p>
+        <p>Chosen Team : {{ us['team'] }}</p>
+        <br>
+    </div>
+    {% endfor %}
+</div>
+<br><br><br><br><br><br>
+<div>
+    <div id="NewsList">
+        <div class="row">
+            <h2>Tweets:</h2>
+            <div class="col-sm-6 col-md-4 col-lg-6">
+                {% for t in tw %}
+                <div class="card">
+                    <p><img src="{{t['userPhoto']}}"></p>
+                    <p>Username : {{t['username']}}</p>
+                    <p>Tweet : {{t['tweet']}}</p>
+                    <p>Time : {{t['TweetTime']}}</p>
+                    <p>url : {{t['url']}}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+        <h2>Massages:</h2>
+            <div class="col-sm-6 col-md-4 col-lg-6">
+                {% for t in masseages %}
+                <div class="card">
+                    <p>Username : {{t['sender']}}</p>
+                    <p>comment : {{t['comment']}}</p>
+                </div>
+                {% endfor %}
+            </div>
+</body>
+</html>

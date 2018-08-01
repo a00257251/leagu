@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<form id="fofo" class="form-inline" method="POST" action="{{ url_for('M') }}">
+  <div class="form-group">
+    <div class="input-group">
+        <span class="input-group-addon">Please select</span>
+            <select id="Tea1" name="Team11_select" class="selectpicker form-control">
+              {% for o in dataH %}
+              <option value="{{ o.name }}">{{ o.name }}</option>
+              {% endfor %}
+            </select>
+            <select id="Tea2" name="Team22_select" class="selectpicker form-control">
+              {% for o in dataA %}
+              <option value="{{ o.name }}">{{ o.name }}</option>
+              {% endfor %}
+            </select>
+        </div>
+    <button type="submit" class="btn btn-default">Go</button>
+    {{ msg }}
+  </div>
+</form>
+
+
+</body>
+</html>
