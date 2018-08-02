@@ -1,9 +1,11 @@
-# leagu
+# league
 
 This is my master’s project that implements two different data mining approaches Poisson distribution and Naïve Bayans with natural language processing in a website.     
 Poisson distribution to predict the outcoming matches ‘results based on previous ones.
 Naïve Bayans with natural language processing to detect the main purpose of the massages between users.  
+
 features:
+
 1-	Have an account to follow your favourite team’s news that appears on your dashboard
 2-	Communicate with other users through exchange massages.
 3-	Analise the massage using Naïve Bayans with natural language processing to show the receiver what kind of this massage is whether it is a greeting, food, love, hate …etc.
@@ -12,6 +14,7 @@ features:
 6-	Use twitter API to bring the match’s news as well as team’s news.  
  
 Technologies that I haves used in this project:
+
 1-	Python for flask framework and data mining purposes 
 2-	TweetPy library to utilize a tweeter API 
 3-	HTML/CSS/JavaScript/Jinja2 as the front-end, 
