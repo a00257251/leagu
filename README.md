@@ -13,7 +13,7 @@ features:
 5-	Use high chart to visualise the predictions in the prediction page. 
 6-	Use twitter API to bring the match’s news as well as team’s news.  
  
-Technologies that I haves used in this project:
+Technologies that I have used in this project:
 
 1-	Python for flask framework and data mining purposes 
 2-	TweetPy library to utilize a tweeter API 
