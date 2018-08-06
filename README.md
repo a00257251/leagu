@@ -11,7 +11,8 @@ features:
 3-	Analise the massage using Naïve Bayans with natural language processing to show the receiver what kind of this massage is whether it is a greeting, food, love, hate …etc.
 4-	 Allow the users to predict the wining team by choosing one and write their opinion and appears in the prediction page and it is visible for other users.
 5-	Use high chart to visualise the predictions in the prediction page. 
-6-	Use twitter API to bring the match’s news as well as team’s news.  
+6-	Use twitter API to bring the match’s news as well as team’s news.
+7- sending emails that have the passwords for to the users who forgot theirs.
  
 Technologies that I have used in this project:
 
